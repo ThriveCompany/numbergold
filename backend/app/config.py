@@ -14,3 +14,9 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+origins = [
+    "http://localhost:3000",
+    "http://localhost:8080",
+    "https://numbergold-frontend.onrender.com",  # Add this
+]
