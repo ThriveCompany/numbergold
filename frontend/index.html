@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Number Battle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="brand-bar">
+      <div>
+        <h1>Number Battle</h1>
+        <p>Two-player secret number guessing in realtime.</p>
+      </div>
+      <button id="logoutBtn" class="ghost-btn">Logout</button>
+    </header>
+
+    <main>
+      <section id="authSection" class="card auth-card">
+        <div class="tab-buttons">
+          <button id="showLogin" class="active">Login</button>
+          <button id="showRegister">Register</button>
+        </div>
+        <form id="loginForm" class="form-grid">
+          <label>Username<input type="text" id="loginUsername" required /></label>
+          <label>Password<input type="password" id="loginPassword" required /></label>
+          <button type="submit" class="primary-btn">Login</button>
+        </form>
+        <form id="registerForm" class="form-grid hidden">
+          <label>Username<input type="text" id="registerUsername" required minlength="3" /></label>
+          <label>Password<input type="password" id="registerPassword" required minlength="8" /></label>
+          <button type="submit" class="primary-btn">Register</button>
+        </form>
+      </section>
+
+      <section id="lobbySection" class="card hidden">
+        <div class="lobby-grid">
+          <div class="card-panel">
+            <h2>Create Game</h2>
+            <form id="createGameForm" class="form-grid">
+              <label>Secret number<input type="number" id="createSecret" min="1" max="100" value="50" required /></label>
+              <button type="submit" class="primary-btn">Create room</button>
+            </form>
+          </div>
+          <div class="card-panel">
+            <h2>Join Game</h2>
+            <form id="joinGameForm" class="form-grid">
+              <label>Room ID<input type="number" id="joinGameId" min="1" required /></label>
+              <label>Secret number<input type="number" id="joinSecret" min="1" max="100" value="50" required /></label>
+              <button type="submit" class="secondary-btn">Join room</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="gameSection" class="card hidden">
+        <div class="game-header">
+          <div>
+            <p class="meta-label">Room <span id="roomIdLabel"></span></p>
+            <p class="meta-label">Status <span id="statusLabel"></span></p>
+            <p class="meta-label">Turn <span id="turnLabel"></span></p>
+          </div>
+          <div class="range-chip">
+            <span id="rangeLabel">Range: 1 – 100</span>
+          </div>
+        </div>
+
+        <div class="bar-shell">
+          <div id="rangeBar" class="range-bar"></div>
+        </div>
+
+        <div class="chat-shell">
+          <div id="messages" class="chat-list" aria-live="polite"></div>
+        </div>
+
+        <form id="guessForm" class="guess-form">
+          <label class="guess-label">
+            Guess a number
+            <input type="number" id="guessInput" min="1" max="100" required />
+          </label>
+          <button type="submit" class="primary-btn">Send guess</button>
+        </form>
+      </section>
+
+      <div id="toast" class="toast hidden"></div>
+    </main>
+  </div>
+
+  <script type="module" src="config.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
